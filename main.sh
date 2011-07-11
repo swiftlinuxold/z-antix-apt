@@ -8,26 +8,37 @@ if [ ! $( id -u ) -eq 0 ]; then
 	exit
 fi
 
+USERNAME=$(logname)
+
+# The remastering process uses chroot mode.
+# Check to see if this script is operating in chroot mode.
+# If /home/$USERNAME exists, then we are not in chroot mode.
+if [ -d "/home/$USERNAME" ]; then
+	DIR_DEVELOP=/home/$USERNAME/develop # not in chroot mode
+else
+	DIR_DEVELOP=/usr/local/bin/develop # in chroot mode
+fi
+
 echo "UPDATING APT"
 
-# Include Debian Squeeze and Lenny
+# Include Debian Wheezy and Squeeze
 echo "Replacing /etc/apt/sources.list"
 
 rm /etc/apt/sources.list
-cp ./etc_apt/sources.list /etc/apt
+cp $DIR_DEVELOP/apt/etc_apt/sources.list /etc/apt
 chown root:root /etc/apt/sources.list
 
 # Install only required packages, not recommended ones
 # Defaults to Debian Squeeze
 echo "Replacing /etc/apt/apt.conf"
 rm /etc/apt/apt.conf
-cp ./etc_apt/apt.conf /etc/apt/
+cp $DIR_DEVELOP/apt/etc_apt/apt.conf /etc/apt/
 chown root:root /etc/apt/apt.conf
 
-# Favor Debian Squeeze over Debian Lenny
+# Favor Debian Wheezy over Debian Squeeze
 echo "Replacing /etc/apt/preferences"
 rm /etc/apt/preferences
-cp ./etc_apt/preferences /etc/apt
+cp $DIR_DEVELOP/apt/etc_apt/preferences /etc/apt
 chown root:root /etc/apt/preferences
 
 # Update apt-get
