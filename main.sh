@@ -9,13 +9,16 @@ if [ ! $( id -u ) -eq 0 ]; then
 fi
 
 USERNAME=$(logname)
+is_chroot=0
 
 # The remastering process uses chroot mode.
 # Check to see if this script is operating in chroot mode.
 # If /home/$USERNAME exists, then we are not in chroot mode.
 if [ -d "/home/$USERNAME" ]; then
+	is_chroot=0
 	DIR_DEVELOP=/home/$USERNAME/develop # not in chroot mode
 else
+	is_chroot=1
 	DIR_DEVELOP=/usr/local/bin/develop # in chroot mode
 fi
 
