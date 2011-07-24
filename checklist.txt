@@ -5,21 +5,12 @@ When you select "All" in the left window of Synaptic, all 30,000+ packages shoul
 Go to Settings -> Preferences -> General tab and make sure that "Consider recommended packages as dependencies" is NOT checked.
 
 Go to Settings -> Repositories, check to make sure that you see enabled:
-deb http://main.mepis-deb.org/mepiscr/repo/ mepis11cr main non-free
-deb http://restricted.mepis-deb.org/mepiscr/repo/ mepis11cr restricted restricted-non-free
-deb http://main.mepis-deb.org/mepiscr/testrepo/ mepis11cr test
-deb http://restricted.mepis-deb.org/mepiscr/testrepo/ mepis11cr test-restricted
 deb http://ftp.us.debian.org/debian/ wheezy main contrib non-free
 deb http://security.debian.org/ wheezy/updates main contrib non-free 
-deb-src http://ftp.us.debian.org/debian/ wheezy main contrib non-free
 deb http://ftp.us.debian.org/debian/ squeeze main contrib non-free 
-deb http://security.debian.org/ squeeze/updates main contrib non-free
-deb-src http://ftp.us.debian.org/debian/ squeeze main contrib non-free 
+deb http://security.debian.org/ squeeze/updates main contrib non-free 
 deb http://www.debian-multimedia.org wheezy main non-free
 deb http://www.debian-multimedia.org squeeze main non-free
 deb http://apt.progchild.de squeeze main
-deb-src http://apt.progchild.de squeeze main
 deb http://deb.opera.com/opera/ squeeze non-free
 deb http://download.virtualbox.org/virtualbox/debian squeeze contrib
-deb http://liquorix.net/debian/ sid main
-deb http://ftp.belnet.be/mirror/liquorix.net/debian sid main
