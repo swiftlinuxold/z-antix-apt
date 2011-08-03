@@ -5,22 +5,24 @@
 if [ ! $( id -u ) -eq 0 ]; then
 	echo "You must be root to run this script."
 	echo "Please enter su before running this script again."
-	exit
+	exit 2
 fi
 
-USERNAME=$(logname)
-is_chroot=0
+IS_CHROOT=0 # changed to 1 if and only if in chroot mode
+USERNAME=""
+DIR_DEVELOP=""
 
 # The remastering process uses chroot mode.
 # Check to see if this script is operating in chroot mode.
-# If /home/$USERNAME exists, then we are not in chroot mode.
-if [ -d "/home/$USERNAME" ]; then
-	is_chroot=0
-	DIR_DEVELOP=/home/$USERNAME/develop # not in chroot mode
+# /srv directory only exists in chroot mode
+if [-d "/srv"]; then
+	IS_CHROOT=1 # in chroot mode
+	DIR_DEVELOP=/usr/local/bin/develop 
 else
-	is_chroot=1
-	DIR_DEVELOP=/usr/local/bin/develop # in chroot mode
+	USERNAME=$(logname) # not in chroot mode
+	DIR_DEVELOP=/home/$USERNAME/develop 
 fi
+
 
 echo "UPDATING APT"
 
@@ -47,3 +49,4 @@ chown root:root /etc/apt/preferences
 # Update apt-get
 apt-get update
 
+exit 0
