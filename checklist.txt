@@ -1,8 +1,10 @@
-Go to /etc/apt/preferences and verify that the current testing branch has a pin priority of 995, and the current stable branch has a pin priority of 650.
+Go to /etc/apt/preferences and verify that the current testing branch has a pin priority of 995, 
+and the current stable branch has a pin priority of 650.
 
 When you select "All" in the left window of Synaptic, all 30,000+ packages should be displayed
 
-Go to Settings -> Preferences -> General tab and make sure that "Consider recommended packages as dependencies" is NOT checked.
+Go to Settings -> Preferences -> General tab and make sure that "Consider recommended packages as 
+dependencies" is NOT checked.
 
 Go to Settings -> Repositories, check to make sure that you see enabled:
 deb http://ftp.us.debian.org/debian/ wheezy main contrib non-free
